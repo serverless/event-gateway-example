@@ -9,6 +9,6 @@
   "author": "Rupak Ganguly",
   "license": "MIT",
   "dependencies": {
-    "@serverless/fdk": "^0.2.2"
+    "@serverless/fdk": "^0.3.5"
   }
 }
