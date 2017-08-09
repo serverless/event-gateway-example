@@ -16,5 +16,5 @@ $ cp config.prod.example.json config.prod.json
 // Open up the config.prod.json and add the Mailgun API keys
 
 $ npm install
-$ sls deploy
+$ sls run
 ```

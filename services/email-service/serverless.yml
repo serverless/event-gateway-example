@@ -24,4 +24,4 @@ functions:
     events:
       - http:
           path: /email
-          method: post
+          method: POST
