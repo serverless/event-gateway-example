@@ -1,0 +1,12 @@
+{
+    "event": "userCreated",
+    "id": "2613a5bd-f7f6-4944-9a2b-64f0344709d2",
+    "receivedAt": 1502242094839,
+    "data": {
+        "user": {
+            "email": "your@email.com",
+            "name": "Mickey Mouse"
+        }
+    },
+    "dataType": "application/json"
+}

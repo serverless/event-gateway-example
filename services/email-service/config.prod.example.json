@@ -1,0 +1,5 @@
+{
+  "region": "us-east-1",
+  "MAILGUN_APIKEY": "your-mailgun-key-here",
+  "MAILGUN_DOMAIN": "your-mailgun-domain-here"
+}

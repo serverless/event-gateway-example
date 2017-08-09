@@ -1,0 +1,18 @@
+{
+  "resource":"/users",
+  "path":"/users",
+  "httpMethod":"POST",
+  "headers":{},
+  "queryStringParameters":null,
+  "pathParameters":null,
+  "stageVariables":null,
+  "requestContext":{
+     "path":"/prod/users",
+     "stage":"prod",
+     "requestId":"123",
+     "resourcePath":"/users",
+     "httpMethod":"POST"
+  },
+  "body":"{\"user\": {\"name\": \"Rupak Ganguly\", \"email\": \"rupakg@gmail.com\"}}",
+  "isBase64Encoded":false
+}

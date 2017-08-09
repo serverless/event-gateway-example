@@ -1,0 +1,40 @@
+# users-api crud service
+
+service: 
+  name: users-service
+  description: 'Users CRUD service.'
+
+custom:
+  defaultStage: prod
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  currentRegion: ${file(./config.${self:custom.currentStage}.json):region}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${self:custom.currentStage}
+  region: ${self:custom.currentRegion}
+  environment:
+    EVENT_GATEWAY_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_URL}
+    EVENT_GATEWAY_CONFIG_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_CONFIG_URL}
+
+functions:
+  registerUser:
+    handler: handler.registerUser
+    events:
+      - http:
+          path: /users
+          method: post
+          cors: true
+  
+  getUser:
+    handler: handler.getUser
+    events:
+      - http:
+          path: /users/{id}
+          method: get 
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true                   

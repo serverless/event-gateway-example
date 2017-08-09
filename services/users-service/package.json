@@ -1,0 +1,14 @@
+{
+  "name": "user-service",
+  "version": "1.0.0",
+  "description": "Users CRUD service.",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rupak Ganguly",
+  "license": "MIT",
+  "dependencies": {
+    "@serverless/fdk": "^0.2.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "resource":"/email",
+  "path":"/email",
+  "httpMethod":"POST",
+  "headers":{},
+  "queryStringParameters":null,
+  "pathParameters":null,
+  "stageVariables":null,
+  "requestContext":{
+     "path":"/prod/email",
+     "stage":"prod",
+     "requestId":"123",
+     "resourcePath":"/email",
+     "httpMethod":"POST"
+  },
+  "body":"{\"to_address\":\"your@email.com\"}",
+  "isBase64Encoded":false
+}

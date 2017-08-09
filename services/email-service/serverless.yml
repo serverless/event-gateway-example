@@ -1,0 +1,27 @@
+# A serverless service that sends out emails via Mailgun
+
+service:
+  name: eg-email-service
+  description: 'A service that sends out emails.'
+
+custom:
+  defaultStage: prod
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  currentRegion: ${file(./config.${self:custom.currentStage}.json):region}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${self:custom.currentStage}
+  region: ${self:custom.currentRegion}
+  environment:
+    MAILGUN_APIKEY: ${file(./config.${self:custom.currentStage}.json):MAILGUN_APIKEY}
+    MAILGUN_DOMAIN: ${file(./config.${self:custom.currentStage}.json):MAILGUN_DOMAIN}
+
+functions:
+  sendWelcomeEmail:
+    handler: handler.sendWelcomeEmail
+    events:
+      - http:
+          path: /email
+          method: post

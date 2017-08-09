@@ -1,0 +1,14 @@
+{
+  "name": "email-service",
+  "version": "1.0.0",
+  "description": "A service that sends out emails.",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rupak Ganguly",
+  "license": "MIT",
+  "dependencies": {
+    "mailgun-js": "^0.11.2"
+  }
+}
