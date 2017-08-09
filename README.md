@@ -57,9 +57,9 @@ Keep an eye on the event gateway logs. You should see the `userCreated` event be
 
 ## Immediate Future
 
-Ideally, we want to run the above application using the `serverless run` command. Currently, I found no way to run an application with multiple services with it. 
+Ideally, we want to run the above application using the `serverless run` command. 
 
-The experience with `serverless run` will be awesome. There will be no need for setting up anything under the Getting Started section. 
+The experience with `serverless run` will be awesome. There will be no need for setting up anything as specified under the Getting Started section. 
 
 The `serverless run` command will:
 
@@ -68,4 +68,4 @@ The `serverless run` command will:
 - Services will be automatically *deployed* to the Local Emulator
 - All of the functions that have event mappings will be *registered* automatically.
 
-The application only needs to *subscribe* to appropriate events as per need.
+The application only needs to *subscribe* to appropriate events and `emit` events as needed.
