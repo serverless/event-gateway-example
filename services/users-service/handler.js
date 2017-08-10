@@ -21,7 +21,9 @@ var saveUser = userData => {
 // Input via post: {"user": {"name": "Rupak Ganguly", "email": "rupak@serverless.com"}}
 module.exports.registerUser = (event, context, callback) => {
   console.log(
-    '\n********** Event: \n' + JSON.stringify(event) + '**********\n'
+    '\n********** Event: \n' + 
+      JSON.stringify(event) + 
+      '**********\n'
   );
 
   var userData = '';
@@ -42,15 +44,15 @@ module.exports.registerUser = (event, context, callback) => {
 
   console.log('\n********* User data saved to the database. **********\n');
 
-  // Emit event 'userCreated'
+  // Emit event 'user.created'
   eventGateway
     .emit({
-      event: 'userCreated',
+      event: 'user.created',
       data: savedUserData
     })
     .then(() => {
       console.log(
-        "\n********** Event 'userCreated' emitted with data:" +
+        "\n********** Event 'user.created' emitted with data:" +
           JSON.stringify(savedUserData) +
           '\n**********\n'
       );
@@ -81,7 +83,7 @@ module.exports.registerUser = (event, context, callback) => {
 
 module.exports.getUser = (event, context, callback) => {
   var userData = {
-    user: { id: 123, name: 'Rupak Ganguly', email: `rupak@serverless.com` }
+    user: { id: 123, name: 'Rupak Ganguly', email: 'rupak@serverless.com' }
   };
 
   const response = {
@@ -93,7 +95,9 @@ module.exports.getUser = (event, context, callback) => {
   };
 
   console.log(
-    '\n********** Get user' + JSON.stringify(response) + '\n**********\n'
+    '\n********** Get user' + 
+      JSON.stringify(response) + 
+      '\n**********\n'
   );
 
   callback(null, response);
