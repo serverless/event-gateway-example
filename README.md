@@ -2,7 +2,7 @@
 
 ## Goals
 
-Create an application with a simple user registration workflow, showcasing Event Gateway as the central hub and broker, orchestrating event flows across decoupled services. The  services can be deployed locally or onto a cloud provider. 
+Create an application with a simple user registration workflow, showcasing Event Gateway as the central hub and broker, orchestrating event flows across decoupled services. The services can be deployed locally or onto a cloud provider. 
 
 ## Application Workflow
 
@@ -22,7 +22,30 @@ Create an application with a simple user registration workflow, showcasing Event
 - A welcome email is sent via the `sendWelcomeEmail` function
 - The service exposes a HTTP endpoint `/email` 
 
-## Getting Started
+## Local Experience with Framework
+
+In this case, the experience starts from the framework. It will be the most enticing case for our existing users. The framework introduces a new command `serverless run` that enables this experience. There will be no need for setting up anything.  
+
+The `serverless run` command will:
+
+- Start a local copy of the Event Gateway
+- Start a local copy of the Local Emulator
+- Services will be automatically *deployed* to the Local Emulator
+- All of the functions that have event mappings will be *registered* automatically.
+
+The application only needs to *subscribe* to appropriate events and `emit` events as needed.
+
+**Note**: The framework also has a new command `serverless emit` for emitting events. 
+
+### Getting Started
+
+1. Get the `serverless-run` branch as documented in this [issue](https://github.com/serverless/serverless/pull/4034).
+2. Set up the [Users service](./services/users-services/README.md) and the [Email service](./services/email-services/README.md).
+3. Enjoy the awesomeness...
+
+## Cloud Experience
+
+In this case, you will be deploying your services to the cloud provider of choice, and run an independent instance of the Event Gateway. This is sort of the On-Prem experience for Event Gateway, with deployments on the cloud.
 
 ### Event Gateway
 
@@ -55,17 +78,3 @@ Keep an eye on the event gateway logs. You should see the `userCreated` event be
 
 **If all goes well, you should get a welcome email.**
 
-## Immediate Future
-
-Ideally, we want to run the above application using the `serverless run` command. 
-
-The experience with `serverless run` will be awesome. There will be no need for setting up anything as specified under the Getting Started section. 
-
-The `serverless run` command will:
-
-- Start a local copy of the Event Gateway
-- Start a local copy of the Local Emulator
-- Services will be automatically *deployed* to the Local Emulator
-- All of the functions that have event mappings will be *registered* automatically.
-
-The application only needs to *subscribe* to appropriate events and `emit` events as needed.
