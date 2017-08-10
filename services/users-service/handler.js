@@ -44,15 +44,15 @@ module.exports.registerUser = (event, context, callback) => {
 
   console.log('\n********* User data saved to the database. **********\n');
 
-  // Emit event 'userCreated'
+  // Emit event 'user.created'
   eventGateway
     .emit({
-      event: 'userCreated',
+      event: 'user.created',
       data: savedUserData
     })
     .then(() => {
       console.log(
-        "\n********** Event 'userCreated' emitted with data:" +
+        "\n********** Event 'user.created' emitted with data:" +
           JSON.stringify(savedUserData) +
           '\n**********\n'
       );
