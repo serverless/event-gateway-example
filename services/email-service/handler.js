@@ -1,7 +1,16 @@
 'use strict';
 
+const EVENT_GATEWAY_URL = "http://localhost:4000"; // process.env.EVENT_GATEWAY_URL;
+const EVENT_GATEWAY_CONFIG_URL = "http://localhost:4001" // process.env.EVENT_GATEWAY_CONFIG_URL;
+
 const MAILGUN_APIKEY   = process.env.MAILGUN_APIKEY
 const MAILGUN_DOMAIN   = process.env.MAILGUN_DOMAIN
+
+const fdk = require('@serverless/fdk');
+const eventGateway = fdk.eventGateway({
+  url: EVENT_GATEWAY_URL,
+  configurationUrl: EVENT_GATEWAY_CONFIG_URL
+});
 
 const mailgun = require('mailgun-js')({
   apiKey: MAILGUN_APIKEY,
@@ -29,8 +38,7 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
 
   var toAddress = "";
   
-  // check if called by 'user.created event
-  if (event.event === "user.created" && event.dataType === "application/json") {
+  if (event.dataType === "application/json") {
     try {
       // toAddress = JSON.parse(event.data).user.email || "";
       toAddress = event.data.user.email || "";
@@ -38,16 +46,6 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
     catch (e){
       console.log("**********\nError parsing email data", e);
     }  
-  } 
-
-  // process if http event
-  if (event.body) {
-    try {
-      toAddress = JSON.parse(event.body).to_address || "";
-    }
-    catch (e){
-      console.log("Error parsing email data", e);
-    }
   }
 
   if (toAddress !== "") {
@@ -82,6 +80,24 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
           }),
         };
         callback(null, response);
+
+        // Emit event 'email.sent'
+        eventGateway
+          .emit({
+            event: 'email.sent',
+            data: {}
+          })
+          .then(() => {
+            console.log("\n********** Event 'email.sent' emitted with data:");
+          })
+          .catch(err => {
+            console.log(
+              "\n********** ERROR: In emitting 'email.sent' event **********\n" +
+                err +
+                '\n**********\n'
+            );
+          });
+
       }
     });
   } else {
