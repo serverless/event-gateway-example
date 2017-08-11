@@ -74,7 +74,7 @@ module.exports.registerUser = (event, context, callback) => {
     })
     .catch(err => {
       console.log(
-        "\n********** ERROR: In emitting 'userCreated' event **********\n" +
+        "\n********** ERROR: In emitting 'user.created' event **********\n" +
           err +
           '\n**********\n'
       );
