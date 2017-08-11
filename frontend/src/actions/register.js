@@ -11,6 +11,7 @@ export const register = email => (dispatch, getState) => {
   });
   fetch('http://localhost:4000/users', {
     method: 'POST',
+    body: JSON.stringify({ email }),
     headers: {
       'Content-Type': 'application/json'
     }
