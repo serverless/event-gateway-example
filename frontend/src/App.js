@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from './actions/register';
+import { logout } from './actions/logout';
 import { logActivity } from './actions/logActivity';
 import logo from './assets/logo.png';
 
@@ -26,6 +27,10 @@ class App extends Component {
       <div>
         <div className="nav center">
           <div className="architecture">serverless architecture</div>
+          {this.props.session &&
+            <button type="button" onClick={() => this.props.logout()}>
+              logout
+            </button>}
         </div>
         <div className="content">
           <img src={logo} alt="logo" height="84" />
@@ -88,6 +93,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({ session: state.session });
-const actions = { register, logActivity };
+const actions = { register, logActivity, logout };
 
 export default connect(mapStateToProps, actions)(App);

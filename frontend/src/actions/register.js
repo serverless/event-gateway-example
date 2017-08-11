@@ -22,8 +22,6 @@ export const register = email => (dispatch, getState) => {
       throw new Error('Status code != 200');
     })
     .then(response => {
-      console.log('AAAAA');
-      console.log('xxxx', response);
       sessionStorage.setItem('session', response.session);
       dispatch({
         type: REGISTER_USER_SUCCESS,
@@ -34,7 +32,6 @@ export const register = email => (dispatch, getState) => {
       });
     })
     .catch(() => {
-      console.log('BBBBB');
       dispatch({
         type: REGISTER_USER_FAILURE,
         data: {
