@@ -1,5 +1,42 @@
+@font-face {
+  font-family: Serverless;
+  src: url("./Serverless-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Gibson;
+  src: url("./Gibson-Regular.otf") format("opentype");
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  font-family: Gibson, sans-serif;
+}
+
+.center {
+  text-align: center;
+}
+
+.nav {
+  box-shadow: 0px 2px 9px 0px rgba(187, 187, 187, 0.5);
+  padding: 2rem;
+}
+
+.architecture {
+  color: #222222;
+  font-size: 2rem;
+  font-family: Serverless, sans-serif;
+  font-weight: normal;
+}
+
+.tagline {
+  color: #222222;
+  font-size: 2.25rem;
+  font-family: Serverless, sans-serif;
+  font-align: center;
+}
+
+h2 {
+  color: #f15953;
+  font-family: Serverless, sans-serif;
+  font-weight: normal;
 }
