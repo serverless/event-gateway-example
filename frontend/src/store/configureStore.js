@@ -4,11 +4,12 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import eventGateway from '../middleware/eventGateway';
 
-const configureStore = () => {
+const configureStore = initialState => {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   return createStore(
     rootReducer,
+    initialState,
     composeEnhancers(applyMiddleware(eventGateway, thunk, createLogger()))
   );
 };

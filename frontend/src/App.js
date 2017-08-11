@@ -32,14 +32,16 @@ class App extends Component {
           <h1 className="architecture center">serverless architecture</h1>
           <div className="tagline center">the fast way to get stuff done</div>
           <div>
-            <form onSubmit={this.register}>
-              <input
-                type="email"
-                onChange={this.updateEmail}
-                value={this.state.email}
-              />
-              <button>learn more</button>
-            </form>
+            {this.props.session
+              ? <div>thanks for registering</div>
+              : <form onSubmit={this.register}>
+                  <input
+                    type="email"
+                    onChange={this.updateEmail}
+                    value={this.state.email}
+                  />
+                  <button>learn more</button>
+                </form>}
           </div>
           <div className="center">
             <h2>build value, fast</h2>
@@ -85,7 +87,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = state => ({ session: state.session });
 const actions = { register, logActivity };
 
 export default connect(mapStateToProps, actions)(App);
