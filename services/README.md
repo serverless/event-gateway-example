@@ -49,11 +49,11 @@ curl -X POST http://localhost:4001/v1/functions \
 ### Subscribe to Events
 
 ```
-// subscribe to 'userCreated' event
+// subscribe to 'user.created' event
 curl -X POST http://localhost:4001/v1/subscriptions \
   -H 'content-type: application/json' \
   -d '{
 	"functionId": "sendWelcomeEmail",
-	"event": "userCreated"
+	"event": "user.created"
 }'
 ```

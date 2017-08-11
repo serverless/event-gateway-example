@@ -9,15 +9,16 @@ Create an application with a simple user registration workflow, showcasing Event
 **Users service**
 - An user registers via the HTTP endpoint `/users`
   - User data is saved to a database (mocked)
-  - An event `userCreated` is emitted
+  - An event `user.created` is emitted
 - The user data is fetched via the HTTP endpoint `/users/{id}`
 
 **The Event Gateway**
-- receives the `userCreated` event
+- receives the `user.created` event
 - invokes the subscribing function `sendWelcomeEmail`
 
 **Email service**
 - A welcome email is sent via the `sendWelcomeEmail` function
+- An event `email.sent` is emitted
 - The service exposes a HTTP endpoint `/email`
 
 ## Local Experience with Framework
@@ -72,6 +73,6 @@ curl -X POST \
   -d '{"user":{"name":"Your Name", "email":"your@email.com"}}'
 ```
 
-Keep an eye on the event gateway logs. You should see the `userCreated` event being received and the corresponding function being called.
+Keep an eye on the event gateway logs. You should see the `user.created` event being received and the corresponding function being called.
 
 **If all goes well, you should get a welcome email.**
