@@ -1,49 +1,47 @@
 'use strict';
 
-const EVENT_GATEWAY_URL = "http://localhost:4000"; // process.env.EVENT_GATEWAY_URL;
-const EVENT_GATEWAY_CONFIG_URL = "http://localhost:4001" // process.env.EVENT_GATEWAY_CONFIG_URL;
-
+const crypto = require('crypto');
 const fdk = require('@serverless/fdk');
+
 const eventGateway = fdk.eventGateway({
-  url: EVENT_GATEWAY_URL,
-  configurationUrl: EVENT_GATEWAY_CONFIG_URL
+  url: 'http://localhost:4000'
 });
 
 // Ideally, here you would save user to the database, but we are mocking it for now
-var saveUser = userData => {
-  // generate random userId
-  var userId = Math.floor(Math.random() * 100 + 1);
-  userData.user['id'] = userId;
-
-  return userData;
+const saveUser = userData => {
+  return {
+    id: Math.floor(Math.random() * 100 + 1),
+    session: crypto.createHash('md5').update(userData.email).digest('hex')
+  };
 };
 
 // Input via post: {"user": {"name": "Rupak Ganguly", "email": "rupak@serverless.com"}}
 module.exports.registerUser = (event, context, callback) => {
-  console.log(
-    '\n********** Event: \n' + 
-      JSON.stringify(event) + 
-      '**********\n'
-  );
+  // console.log(
+  //   '\n********** Event: \n' + JSON.stringify(event) + '**********\n'
+  // );
 
   var userData = {};
 
-  if (event.dataType === "application/json") {
-    try {
-      userData = event.data.body;
-    } catch (e) {
-      console.log(
-        '\n********** ERROR: In parsing data payload **********\n' +
-          e +
-          '\n**********\n'
-      );
-    }
-  }
+  // if (event.dataType === 'application/json') {
+  //   try {
+  //     userData = event.data.body;
+  //   } catch (e) {
+  //     console.log(
+  //       '\n********** ERROR: In parsing data payload **********\n' +
+  //         e +
+  //         '\n**********\n'
+  //     );
+  //   }
+  // }
 
   // save user to the database
-  var savedUserData = saveUser(userData);
+  // var savedUserData = saveUser(userData);
+  var savedUserData = saveUser({
+    email: 'team@serverless.com' // TODO use userData for this
+  });
 
-  console.log('\n********* User data saved to the database. **********\n');
+  // console.log('\n********* User data saved to the database. **********\n');
 
   // Emit event 'user.created'
   eventGateway
@@ -52,26 +50,23 @@ module.exports.registerUser = (event, context, callback) => {
       data: savedUserData
     })
     .then(() => {
-      console.log(
-        "\n********** Event 'user.created' emitted with data:" +
-          JSON.stringify(savedUserData) +
-          '\n**********\n'
-      );
-      // send reponse back
-      var userId = savedUserData.user.id;
+      // console.log(
+      //   "\n********** Event 'user.created' emitted with data:" +
+      //     JSON.stringify(savedUserData) +
+      //     '\n**********\n'
+      // );
+      // const response = {
+      //   statusCode: 201,
+      //   headers: {
+      //     Location: `/users/${savedUserData.id}`
+      //   },
+      //   body: JSON.stringify({
+      //     data: savedUserData,
+      //     message: 'User registered successfully.'
+      //   })
+      // };
 
-      const response = {
-        statusCode: 201,
-        headers: {
-          Location: `/users/${userId}`
-        },
-        body: JSON.stringify({
-          data: savedUserData,
-          message: 'User registered successfully.'
-        })
-      };
-
-      callback(null, response);
+      callback(null, savedUserData);
     })
     .catch(err => {
       console.log(
@@ -96,9 +91,7 @@ module.exports.getUser = (event, context, callback) => {
   };
 
   console.log(
-    '\n********** Get user' + 
-      JSON.stringify(response) + 
-      '\n**********\n'
+    '\n********** Get user' + JSON.stringify(response) + '\n**********\n'
   );
 
   callback(null, response);

@@ -6,7 +6,10 @@ import './assets/index.css';
 import App from './App';
 import configureStore from './store/configureStore';
 
-const store = configureStore();
+const initialState = {
+  session: sessionStorage.getItem('session')
+};
+const store = configureStore(initialState);
 
 ReactDOM.render(
   <Provider store={store}>
