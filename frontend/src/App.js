@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.png';
+import { connect } from 'react-redux';
+import { register } from './actions/register';
+import logo from './assets/logo.png';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { email: '' };
+  }
+
+  updateEmail = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  register = event => {
+    event.preventDefault();
+    this.props.register(this.state.email);
+  };
+
   render() {
     return (
       <div>
@@ -12,6 +30,16 @@ class App extends Component {
           <img src={logo} alt="logo" height="84" />
           <h1 className="architecture center">serverless architecture</h1>
           <div className="tagline center">the fast way to get stuff done</div>
+          <div>
+            <form onSubmit={this.register}>
+              <input
+                type="email"
+                onChange={this.updateEmail}
+                value={this.state.email}
+              />
+              <button>learn more</button>
+            </form>
+          </div>
           <div className="center">
             <h2>build value, fast</h2>
           </div>
@@ -41,4 +69,7 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ user: state.user });
+const actions = { register };
+
+export default connect(mapStateToProps, actions)(App);
