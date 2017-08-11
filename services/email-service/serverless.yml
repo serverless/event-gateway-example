@@ -22,6 +22,4 @@ functions:
   sendWelcomeEmail:
     handler: handler.sendWelcomeEmail
     events:
-      - http:
-          path: /email
-          method: POST
+      - user.created
