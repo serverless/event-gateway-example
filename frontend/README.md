@@ -1,61 +1,28 @@
-### User Interface
+# Frontend
 
-In the current iteration, there is no UI. The following API calls via `curl` will imitate the initial setup.
+## Available Scripts
 
-### Register Functions with the Event Gateway
+In the project directory, you can run:
 
-**Note**: Based on the deployments, replace the `arn` attribute in the following calls.
+### `npm start`
 
-```
-// register registerUser
-curl -X POST http://localhost:4001/v1/functions \
-  -H 'content-type: application/json' \
-  -d '{
-	"functionId": "registerUser", 
-	"provider": {
-		"type": "awslambda",
-		"arn": "arn:aws:lambda:us-east-1:XXXXXXXXXXX:function:users-service-prod-registerUser", 
-		"region": "us-east-1"
-	}
-}'
-```
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```
-// register getUser
-curl -X POST http://localhost:4001/v1/functions \
-  -H 'content-type: application/json' \
-  -d '{
-	"functionId": "getUser", 
-	"provider": {
-		"type": "awslambda",
-		"arn": "arn:aws:lambda:us-east-1:XXXXXXXXXXX:function:users-service-prod-getUser", 
-		"region": "us-east-1"
-	}
-}'
-```
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-```
-// register sendWelcomeEmail
-curl -X POST http://localhost:4001/v1/functions \
-  -H 'content-type: application/json' \
-  -d '{
-	"functionId": "sendWelcomeEmail", 
-	"provider": {
-		"type": "awslambda",
-		"arn": "arn:aws:lambda:us-east-1:XXXXXXXXXXX:function:eg-email-service-prod-sendWelcomeEmail", 
-		"region": "us-east-1"
-	}
-}'
-```
+### `npm test`
 
-### Subscribe to Events
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](#running-tests) for more information.
 
-```
-// subscribe to 'userCreated' event
-curl -X POST http://localhost:4001/v1/subscriptions \
-  -H 'content-type: application/json' \
-  -d '{
-	"functionId": "sendWelcomeEmail", 
-	"event": "userCreated"
-}'
-```
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+See the section about [deployment](#deployment) for more information.
