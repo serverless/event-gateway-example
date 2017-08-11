@@ -29,8 +29,8 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
 
   var toAddress = "";
   
-  // check if called by 'userCreated event
-  if (event.event === "userCreated" && event.dataType === "application/json") {
+  // check if called by 'user.created event
+  if (event.event === "user.created" && event.dataType === "application/json") {
     try {
       // toAddress = JSON.parse(event.data).user.email || "";
       toAddress = event.data.user.email || "";
