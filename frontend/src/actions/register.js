@@ -4,5 +4,7 @@ export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
 
 export const register = email => ({
   type: REGISTER_USER,
-  email
+  data: {
+    email
+  }
 });

@@ -2,7 +2,7 @@ export default (state = null, action) => {
   switch (action.type) {
     case 'REGISTER_USER':
       return {
-        email: action.email
+        email: action.data.email
       };
     default:
       return state;
