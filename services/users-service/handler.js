@@ -1,7 +1,7 @@
 'use strict';
 
-const EVENT_GATEWAY_URL = process.env.EVENT_GATEWAY_URL;
-const EVENT_GATEWAY_CONFIG_URL = process.env.EVENT_GATEWAY_CONFIG_URL;
+const EVENT_GATEWAY_URL = "http://localhost:4000"; // process.env.EVENT_GATEWAY_URL;
+const EVENT_GATEWAY_CONFIG_URL = "http://localhost:4001" // process.env.EVENT_GATEWAY_CONFIG_URL;
 
 const fdk = require('@serverless/fdk');
 const eventGateway = fdk.eventGateway({
@@ -26,13 +26,14 @@ module.exports.registerUser = (event, context, callback) => {
       '**********\n'
   );
 
-  var userData = '';
-  if (event.body) {
+  var userData = {};
+
+  if (event.dataType === "application/json") {
     try {
-      userData = JSON.parse(event.body);
+      userData = event.data.body;
     } catch (e) {
       console.log(
-        '\n********** ERROR: In parsing event.body **********\n' +
+        '\n********** ERROR: In parsing data payload **********\n' +
           e +
           '\n**********\n'
       );
