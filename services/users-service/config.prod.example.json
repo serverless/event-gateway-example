@@ -1,5 +1,0 @@
-{
-  "region": "us-east-1",
-  "EVENT_GATEWAY_URL": "http://localhost:4000",
-  "EVENT_GATEWAY_CONFIG_URL": "http://localhost:4001"  
-}

@@ -14,5 +14,11 @@ config.prod.json
 # vscode
 .vscode
 
+# etcd
+*.etcd
+
 # node_modules
 node_modules
+*.log
+
+.DS_Store
