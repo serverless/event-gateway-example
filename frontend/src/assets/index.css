@@ -10,10 +10,87 @@
 
 body {
   font-family: Gibson, sans-serif;
+  font-size: 1rem;
+}
+
+.content {
+  margin-top: 80px;
+}
+
+.section {
+  margin: 0 auto;
+  width: 270px;
+  margin-bottom: 70px;
 }
 
 .center {
   text-align: center;
+}
+
+form {
+  margin: 0 auto;
+}
+
+button {
+  color: #222222;
+  font-size: 1rem;
+  font-family: Serverless, sans-serif;
+  font-weight: normal;
+  box-shadow: none;
+  border-radius: 0;
+  display: inline-block;
+}
+
+button.flat {
+  color: #f15953;
+  background-color: #fff;
+  text-shadow: -1px 1px #fff;
+  border: 1px solid #f15953;
+  height: 35px;
+  width: 180px;
+  margin-top: 10px;
+}
+
+button.register {
+  color: #fff;
+  background-color: #f15953;
+  text-shadow: -1px 1px #f15953;
+  width: 92%;
+}
+
+input[type=email] {
+  height: 30px;
+  width: 90%;  
+  margin-top: 20px;  
+  font-family: Serverless, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  text-align: center;
+}
+
+div.logo {
+  text-align: center;
+}
+
+.logo-small {
+  float: left;
+  margin-left: 250px;
+  margin-right: 0;
+}
+
+.header-text {
+  float: left;
+  margin-top: -36px;
+  margin-left: 285px;
+  margin-right: 100px;
+}
+
+.box {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 12px;
+  background-color: #eee;
+  height: 120px;
 }
 
 .nav {
@@ -32,11 +109,14 @@ body {
   color: #222222;
   font-size: 2.25rem;
   font-family: Serverless, sans-serif;
-  font-align: center;
 }
 
 h2 {
   color: #f15953;
   font-family: Serverless, sans-serif;
   font-weight: normal;
+}
+
+.message {
+  margin-top: 50px;
 }
