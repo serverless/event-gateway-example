@@ -21,16 +21,9 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
       data: {}
     })
     .then(() => {
-      // console.log("\n********** Event 'email.sent' emitted with data:");
+      return callback(null, { message: 'Email sent.' });
     })
     .catch(err => {
-      // console.log(
-      //   "\n********** ERROR: In emitting 'email.sent' event **********\n" +
-      //     err +
-      //     '\n**********\n'
-      // );
+      return callback({ error: err }, null);
     });
-
-  return callback(null, { message: 'Email sent.' });
-
 };

@@ -5,21 +5,31 @@ const eventGateway = fdk.eventGateway({
 });
 
 export default store => next => action => {
-  if (action.emit) {
+
+  let event = {};
+
+  switch (action.type) {
+    case 'USER_ACTIVITY_CLICKED':
+      event.event = 'user.activity.clicked';
+      event.data = action.data;
+      break;
+    default:
+      event = null;
+      break;
+  }
+
+  if (event) {
     eventGateway
-      .emit({
-        event: action.type,
-        data: action.data
-      })
+      .emit(event)
       .then(() => {
-        console.info(`Emitted ${action.type}`);
-        console.log(action.data);
+        console.info(`Emitted ${event.event}`);
+        console.log(event.data);
       })
       .catch(() => {
-        console.error(`Failed to emit ${action.type}`);
-        console.log(action.data);
+        console.error(`Failed to emit ${event.event}`);
+        console.log(event.data);
       });
   }
-  let result = next(action);
-  return result;
+
+  return next(action);
 };

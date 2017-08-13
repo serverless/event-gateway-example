@@ -1,7 +1,7 @@
 # A serverless service that sends out emails via Mailgun
 
 service:
-  name: eg-email-service
+  name: email_service
   description: 'A service that sends out emails.'
 
 custom:
@@ -15,6 +15,8 @@ provider:
   stage: ${self:custom.currentStage}
   region: ${self:custom.currentRegion}
   environment:
+    EVENT_GATEWAY_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_URL}
+    EVENT_GATEWAY_CONFIG_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_CONFIG_URL}
     MAILGUN_APIKEY: ${file(./config.${self:custom.currentStage}.json):MAILGUN_APIKEY}
     MAILGUN_DOMAIN: ${file(./config.${self:custom.currentStage}.json):MAILGUN_DOMAIN}
 

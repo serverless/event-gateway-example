@@ -1,7 +1,7 @@
 # users-api crud service
 
 service:
-  name: users-service
+  name: users_service
   description: 'Users CRUD service.'
 
 custom:
@@ -20,24 +20,10 @@ provider:
 
 functions:
   registerUser:
-    handler: handler.registerUser
+    handler: handler.register
     events:
       - http:
           path: /users
           method: POST
           # cors has to be commented out until we change how data is sent to the Event Gateway
           # cors: true
-
-  # getUser:
-  #   handler: handler.getUser
-  #   events:
-  #     - http:
-          # Path params aren't isn't supported yet
-          # path: /users/{id}
-          # path: /users/123
-          # method: GET
-          # cors: true
-          # request:
-          #   parameters:
-          #     paths:
-          #       id: true

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from './actions/register';
 import { logout } from './actions/logout';
-import { logActivity } from './actions/logActivity';
+import { click } from './actions/click';
 import logo from './assets/logo.png';
 
 class App extends Component {
@@ -26,20 +26,31 @@ class App extends Component {
     return (
       <div>
         <div className="nav center">
-            <span className="logo-small"><img src={logo} alt="logo" height="20" /></span>
-            <div className="architecture header-text">serverless architecture</div>
-          {this.props.session &&
-            <button className="flat" type="button" onClick={() => this.props.logout()}>
-              logout
-            </button>}
+          <div className="nav-left">
+            <span className="logo-small">
+              <img src={logo} alt="logo" height="20" />
+            </span>
+            serverless architecture
+          </div>
+          <div className="nav-right">
+            {this.props.session &&
+              <button className="flat" type="button" onClick={() => {
+                this.props.logout()
+              }}>
+                logout
+              </button>
+            }
+          </div>
         </div>
         <div className="content center">
-          <img src={logo} alt="logo" height="84" />
-          <h1 className="architecture center">serverless architecture</h1>
-          <div className="tagline center">the fast way to get stuff done</div>
-          <div className="section center box">
+          <div className="hero-icon">ß</div>
+          <div className="title">serverless architecture</div>
+          <div className="tagline center">build more, manage less</div>
+          <div className="section">
             {this.props.session
-              ? <div className="message">thanks for registering!</div>
+              ? <div className="success">
+                Thanks for registering!
+                </div>
               : <form onSubmit={this.register}>
                   <input
                     type="email"
@@ -47,20 +58,20 @@ class App extends Component {
                     value={this.state.email}
                     placeholder="enter your email"
                   />
-                  <button className="flat register">register</button>
+                  <input type="submit" value="register"></input>
                 </form>}
           </div>
           <div className="section center">
             <div>
               <h2>build value, fast</h2>
             </div>
-            <div>
-              There is no faster way to get new projects built and to the market
-            </div>
-            <button 
+            <p>
+              There is no faster way to get new projects built and to the market than to use a serverless architecture.
+            </p>
+            <button
               className="flat"
               type="button"
-              onClick={() => this.props.logActivity('build-value')}
+              onClick={() => this.props.click('homepage.button.build-value')}
             >
               learn more
             </button>
@@ -69,30 +80,29 @@ class App extends Component {
             <div>
               <h2>minimize overhead</h2>
             </div>
-            <div>
+            <p>
               Serverless architectures are auto-scaling with pay-per-execution
               pricing, reducing overhead like never before
-            </div>
+            </p>
             <button
               className="flat"
               type="button"
-              onClick={() => this.props.logActivity('minimize-overhead')}
+              onClick={() => this.props.click('homepage.button.minimize-overhead')}
             >
               learn more
             </button>
           </div>
-          <div className="section center">          
+          <div className="section center">
             <div>
-              <h2>make multi-cloud accessible</h2>
+              <h2>event-driven</h2>
             </div>
-            <div>
-              Serverless architectures are auto-scaling with pay-per-execution
-              pricing, reducing overhead like never before
-            </div>
+            <p>
+              The back-end and front-end of this serverless architecture is entirely event-driven.
+            </p>
             <button
               className="flat"
               type="button"
-              onClick={() => this.props.logActivity('multi-cloud')}
+              onClick={() => this.props.click('homepage.button.event-driven')}
             >
               learn more
             </button>
@@ -104,6 +114,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({ session: state.session });
-const actions = { register, logActivity, logout };
+const actions = { register, click, logout };
 
 export default connect(mapStateToProps, actions)(App);
