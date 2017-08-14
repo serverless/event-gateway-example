@@ -1,3 +1,3 @@
-module.exports.trackFunctionProviderError = (event, context, callback) => {
+module.exports.alertAdmin = (event, context, callback) => {
   callback(null, { message: 'Admin informed.' })
 }

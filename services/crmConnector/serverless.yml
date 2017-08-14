@@ -16,7 +16,7 @@ provider:
     EVENT_GATEWAY_CONFIG_URL: ${self:custom.eventGatewayConfigUrl}
 
 functions:
-  addUserToCms:
-    handler: handler.addUserToCms
+  addUserToCrm:
+    handler: handler.addUserToCrm
     events:
       - user.created

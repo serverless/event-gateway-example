@@ -16,7 +16,7 @@ provider:
     EVENT_GATEWAY_CONFIG_URL: ${self:custom.eventGatewayConfigUrl}
 
 functions:
-  trackFunctionProviderError:
-    handler: handler.trackFunctionProviderError
+  alertAdmin:
+    handler: handler.alertAdmin
     events:
       - gateway.warn.functionProviderError
