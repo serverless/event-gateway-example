@@ -1,6 +1,6 @@
 service:
-  name: cms_connector_service
-  description: 'A service connecting the app to the CMS system'
+  name: crm_connector_service
+  description: 'A service connecting the app to the CRM system'
 
 custom:
   eventGatewayUrl: "http://localhost:4000"
