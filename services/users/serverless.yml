@@ -5,18 +5,17 @@ service:
   description: 'Users CRUD service.'
 
 custom:
-  defaultStage: prod
-  currentStage: ${opt:stage, self:custom.defaultStage}
-  currentRegion: ${file(./config.${self:custom.currentStage}.json):region}
+  eventGatewayUrl: "http://localhost:4000"
+  eventGatewayConfigUrl: "http://localhost:4001"
 
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: ${self:custom.currentStage}
-  region: ${self:custom.currentRegion}
+  stage: prod
+  region: us-east-1
   environment:
-    EVENT_GATEWAY_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_URL}
-    EVENT_GATEWAY_CONFIG_URL: ${file(./config.${self:custom.currentStage}.json):EVENT_GATEWAY_CONFIG_URL}
+    EVENT_GATEWAY_URL: ${self:custom.eventGatewayUrl}
+    EVENT_GATEWAY_CONFIG_URL: ${self:custom.eventGatewayConfigUrl}
 
 functions:
   registerUser:
