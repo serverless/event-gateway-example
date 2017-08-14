@@ -1,0 +1,22 @@
+service:
+  name: cms_connector_service
+  description: 'A service connecting the app to the CMS system'
+
+custom:
+  eventGatewayUrl: "http://localhost:4000"
+  eventGatewayConfigUrl: "http://localhost:4001"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+  region: us-east-1
+  environment:
+    EVENT_GATEWAY_URL: ${self:custom.eventGatewayUrl}
+    EVENT_GATEWAY_CONFIG_URL: ${self:custom.eventGatewayConfigUrl}
+
+functions:
+  addUserToCms:
+    handler: handler.addUserToCms
+    events:
+      - user.created
