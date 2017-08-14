@@ -18,7 +18,11 @@ module.exports.sendWelcomeEmail = (event, context, callback) => {
   eventGateway
     .emit({
       event: 'email.sent',
-      data: {}
+      data: {
+        "id": event.data.id,
+        "name": event.data.name,
+        "email": event.data.email
+      }
     })
     .then(() => {
       return callback(null, { message: 'Email sent.' });
