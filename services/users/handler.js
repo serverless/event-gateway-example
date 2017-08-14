@@ -10,8 +10,8 @@ const eventGateway = fdk.eventGateway({
 module.exports.register = (event, context, callback) => {
 
   users.register({
-    email: event.data.body.user.email,
-    name: event.data.body.user.name
+    email: event.data.body.email,
+    name: event.data.body.name
   }, function(data) {
 
     // Emit event
