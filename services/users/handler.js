@@ -26,7 +26,7 @@ module.exports.register = (event, context, callback) => {
     // Emit event
     eventGateway
       .emit({
-        event: 'user.activity.registered',
+        event: 'user.registered',
         data: data
       })
       .then(() => {

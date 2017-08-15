@@ -15,4 +15,4 @@ functions:
   annotate:
     handler: annotateUser
     events:
-      - user.activity.registered
+      - user.registered

@@ -10,7 +10,7 @@ export default store => next => action => {
 
   switch (action.type) {
     case 'USER_ACTIVITY_CLICKED':
-      event.event = 'user.activity.clicked';
+      event.event = 'user.clicked';
       event.data = action.data;
       break;
     default:
