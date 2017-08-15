@@ -1,7 +1,7 @@
 # A template for a new serverless service
 
 service:
-  name: template_service # replace 'template'
+  name: template # replace 'template'
   description: 'A template service for starting a new service.'
 
 custom:

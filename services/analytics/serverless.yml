@@ -1,4 +1,4 @@
-service: analytics-service
+service: analytics
 
 plugins:
   - serverless-google-cloudfunctions

@@ -1,7 +1,7 @@
 # A serverless service that sends out emails via Mailgun
 
 service:
-  name: email_service
+  name: email
   description: 'A service that sends out emails.'
 
 custom:

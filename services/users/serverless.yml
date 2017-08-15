@@ -1,7 +1,7 @@
 # users-api crud service
 
 service:
-  name: users_service
+  name: users
   description: 'Users CRUD service.'
 
 custom:
