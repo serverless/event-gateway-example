@@ -1,6 +1,6 @@
 {
   "CREDENTIALS_FILE": "credentials.json",
-  "PROJECT_ID": "serverless-emit",
+  "PROJECT_ID": "serverless-emit-176816",
   "DATASET_ID": "emit_demo",
   "TABLE_ID": "test_events"
 }
