@@ -18,7 +18,7 @@ export const register = email => (dispatch, getState) => {
   })
     .then(response => {
       if (response.status === 200) {
-        return response.json;
+        return response.json();
       }
       throw new Error('Status code != 200');
     })
