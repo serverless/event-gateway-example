@@ -13,6 +13,6 @@ provider:
 
 functions:
   annotate:
-    handler: annotateUser 
+    handler: annotateUser
     events:
-      - user.created
+      - user.activity.registered

@@ -21,4 +21,4 @@ functions:
   sendWelcomeEmail:
     handler: handler.sendWelcomeEmail
     events:
-      - user.created
+      - user.activity.registered

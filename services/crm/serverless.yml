@@ -19,4 +19,4 @@ functions:
   addUserToCrm:
     handler: handler.addUserToCrm
     events:
-      - user.created
+      - user.activity.registered

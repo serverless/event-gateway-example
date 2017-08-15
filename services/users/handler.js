@@ -9,6 +9,15 @@ const eventGateway = fdk.eventGateway({
 
 module.exports.register = (event, context, callback) => {
 
+  // Validate
+  if (!event.data || !event.data.body || !event.data.body.email) {
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({message: 'Email is required'})
+    })
+  }
+
+  // Register user
   users.register({
     email: event.data.body.email,
     name: event.data.body.name
@@ -17,7 +26,7 @@ module.exports.register = (event, context, callback) => {
     // Emit event
     eventGateway
       .emit({
-        event: 'user.created',
+        event: 'user.activity.registered',
         data: data
       })
       .then(() => {

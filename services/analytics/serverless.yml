@@ -18,5 +18,5 @@ functions:
   analytics:
     handler: recordEvents
     events:
-      - user.created
+      - user.activity.registered
       - email.sent
