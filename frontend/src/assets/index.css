@@ -46,7 +46,7 @@ button:focus, input:focus {
 }
 
 button:hover, input[type=submit]:hover {
-  cursor: pointer;
+  cursor: pointer!important;
 }
 
 input[type=submit]:active {

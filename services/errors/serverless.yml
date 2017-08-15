@@ -1,6 +1,6 @@
 service:
-  name: system
-  description: 'A service to act on system errors'
+  name: errors
+  description: 'A service to act on Event Gateway system errors'
 
 custom:
   eventGatewayUrl: "http://localhost:4000"

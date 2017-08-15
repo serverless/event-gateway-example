@@ -18,7 +18,7 @@ provider:
     EVENT_GATEWAY_CONFIG_URL: ${self:custom.eventGatewayConfigUrl}
 
 functions:
-  registerUser:
+  register:
     handler: handler.register
     events:
       - http:
