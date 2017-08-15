@@ -1,0 +1,18 @@
+service: vision
+
+plugins:
+  - serverless-google-cloudfunctions
+
+provider:
+  name: google
+  runtime: nodejs
+  project: ${file(./config.json):PROJECT_ID}
+  credentials: ~/.gcloud/keyfile.json
+  environment:
+    API_KEY: ${file(./config.json):API_KEY}
+
+functions:
+  annotate:
+    handler: annotateUser 
+    events:
+      - user.created
