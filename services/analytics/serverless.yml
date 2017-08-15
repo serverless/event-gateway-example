@@ -19,4 +19,4 @@ functions:
     handler: recordEvents
     events:
       - user.registered
-      - email.sent
+      - user.clicked
