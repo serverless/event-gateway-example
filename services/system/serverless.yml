@@ -19,4 +19,4 @@ functions:
   alertAdmin:
     handler: handler.alertAdmin
     events:
-      - gateway.warn.functionProviderError
+      - gateway.info.functionError
