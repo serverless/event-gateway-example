@@ -22,11 +22,13 @@ You need to get a JSON key file with access to BigQuery.
 
 1. Go to the Google APIs [Credentials console](https://console.developers.google.com/projectselector/apis/credentials). Select your project.
 
-2. Click `Create Credentials` and choose `Service account key`.
+1. Go to the [Google APIs Library](https://console.developers.google.com/apis/library) page, and click on the [BiqQuery API](https://console.developers.google.com/apis/api/bigquery-json.googleapis.com/overview) link to make sure the API is enabled for your project.
 
-3. In the Service Account dropdown, choose `New service account`. Give it a name. In the Role box, go to BigQuery and select BigQuery Admin.
+1. Click `Create Credentials` and choose `Service account key`.
 
-4. Use a JSON key type and hit 'Create'. It will download a JSON file to your computer. Move it to this directory as the file name `credentials.json`. 
+1. In the Service Account dropdown, choose `New service account`. Give it a name. In the Role box, go to BigQuery and select BigQuery Admin.
+
+1. Use a JSON key type and hit 'Create'. It will download a JSON file to your computer. Move it to this directory as the file name `credentials.json`. 
 
 ## Using BigQuery
 
