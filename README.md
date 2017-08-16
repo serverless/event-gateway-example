@@ -10,8 +10,7 @@ This example showcases how to develop and deploy Serverless applications using t
     1. [Subscribing to Custom Events](#subscribing-to-custom-events)
     1. [Error Handling with Event Gateway System Events](#error-handling-with-event-gateway-system-events)
     1. [Going Multi-Cloud with Google Cloud Functions](#going-multi-cloud-with-google-cloud-functions)
-1. [Workflows](#workflows)
-1. [Development Experience](#development-experience)
+1. [Events](#events)
 1. [Deploy](#deploy)
 1. [Resources](#resources)
 
