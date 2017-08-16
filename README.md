@@ -2,7 +2,7 @@
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
-A application with a simple user registration workflow, showcasing Event Gateway as the central hub and broker, orchestrating event flows across decoupled services.
+This example showcases how to develop and deploy Serverless applications using the Event Gateway as the central hub and broker, orchestrating event flows across decoupled services.
 
 1. [Events](#events)
 1. [Services](#services)
@@ -11,13 +11,11 @@ A application with a simple user registration workflow, showcasing Event Gateway
 1. [Deploy](#deploy)
 1. [Resources](#resources)
 
-## Events
+## General
 
-This is a list of all the events used in this application:
+The Event Gateway allows you to provide HTTP endpoints as well as Pub/Sub functionality into a single event-driven experience. This example uses the `serverless run` command by the Serverless Framework providing developers with a seamless development experience.
 
-- user.registered
-- user.clicked
-- gateway.info.functionError
+This example contains multiple services. Each of them can be run separately to develop an individual service, but also together at the same time to test the integration between multiple services.
 
 ## Services
 
@@ -103,6 +101,15 @@ Keep an eye on the event gateway logs. You should see the `user.created` event b
 ## Deploy
 
 Currently work in progress and you can expect this section to be completed soon. Production ready deployment is one of the highest priorities of the Serverless team. Please reach out to us if you are interested to run the Event Gateway on-premise or use a hosted solution.
+
+## Events
+
+A list of all the events used in this application:
+
+- http
+- user.registered
+- user.clicked
+- gateway.info.functionError
 
 ## Resources
 
