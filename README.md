@@ -6,7 +6,7 @@ This example showcases how to develop and deploy Serverless applications using t
 
 1. [General](#general)
 1. [Step by Step Guide](#step-by-step-guide)
-    1. [Getting Started with the Users Service](#getting-started-with-the-users-service)
+    1. [Getting Started setting up an HTTP endpoint](#getting-started-setting-up-an-http-event)
     1. [Subscribing to Custom Events](#subscribing-to-custom-events)
     1. [Error Handling with Event Gateway System Events](#error-handling-with-event-gateway-system-events)
     1. [Going Multi-Cloud with Google Cloud Functions](#going-multi-cloud-with-google-cloud-functions)
@@ -22,25 +22,23 @@ This example contains multiple services. Each of them can be run separately to d
 
 ## Step by Step Guide
 
-### Getting Started with the Users Service
+### Getting Started setting up an HTTP endpoint
 
-To get started cd into the [services/users](https://github.com/serverless/event-gateway-example/tree/master/services/users) service and run
+To get started cd into the users service at  [services/users](https://github.com/serverless/event-gateway-example/tree/master/services/users) and run
 
-```
+```bash
 serverless run
 ```
 
-This spins up a process downloading and running the Event Gateway as well as emulating the function users-register defined in `serverless.yml`.
+This will emulate the function `register` locally. In addition it downloads, runs and configures the Event Gateway to invoke the function every time a request to HTTP endpoint `/users` is triggered with the method `POST`. You can test the endpoint by sending an HTTP request to  register a user and receive a valid session:
 
-The function is listening to an HTTP event at the path `/users` with the method `POST`. You can test the endpoint by sending an HTTP request to receive a valid session:
-
-```
+```bash
 curl -X POST -d '{ "email": "test@example.com" }' --header "Content-Type: application/json" http://localhost:4000/users
 ```
 
 In the `serverless run` terminal session you will see that the user-registered function triggers the `user.registered` event which we will use in the next step.
 
-```
+```bash
 Event Gateway  Event 'http' received
 Serverless     Function 'users-register' triggered by event 'http'
 Event Gateway  Event 'user.registered' received
@@ -49,7 +47,35 @@ Serverless     Function 'users-register' finished
 
 ### Subscribing to Custom Events
 
-Tutorial coming soon …
+Next up open another terminal and cd into the directory of the emails service at [services/emails](https://github.com/serverless/event-gateway-example/tree/master/services/emails). There also run
+
+```bash
+serverless run
+```
+
+This will register the function `sendWelcomeEmail` and subscribe it to the custom event `user.registered`. Details can be found in your serverless-run process of the users service. By now you have have two services running connected to one Event Gateway.
+
+If you register another user now by running
+
+```bash
+curl -X POST -d '{ "email": "test2@example.com" }' --header "Content-Type: application/json" http://localhost:4000/users
+```
+
+This time the workflow is extended by
+
+```bash
+Serverless     Function 'emails-sendWelcomeEmail' triggered by event 'user.registered'
+Event Gateway  Event 'email.sent' received
+Serverless     Function 'emails-sendWelcomeEmail' finished
+```
+
+This event driven architecture allowed us to extend the existing functionality with very little effort.
+
+While this demonstrated how to test the integration between multiple service you can also run and test the emails service alone. For a better experience testing custom events the Serverless Framework supports the emit command. Give it a try by running:
+
+```bash
+serverless emit -n=user.registered -d='{ "id": 42, "session": "xxxxx", "email": "test3@example.com" }'
+```
 
 ### Error Handling with Event Gateway System Events
 
