@@ -6,7 +6,7 @@ This example showcases how to develop and deploy Serverless applications using t
 
 1. [General](#general)
 1. [Step by Step Guide](#step-by-step-guide)
-    1. [Getting Started setting up an HTTP endpoint](#getting-started-setting-up-an-http-event)
+    1. [Getting Started setting up an HTTP endpoint](#getting-started-setting-up-an-http-endpoint)
     1. [Subscribing to Custom Events](#subscribing-to-custom-events)
     1. [Error Handling with Event Gateway System Events](#error-handling-with-event-gateway-system-events)
     1. [Going Multi-Cloud with Google Cloud Functions](#going-multi-cloud-with-google-cloud-functions)
