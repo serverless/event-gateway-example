@@ -27,6 +27,7 @@ This example contains multiple services. Each of them can be run separately to d
 To get started cd into the users service at  [services/users](https://github.com/serverless/event-gateway-example/tree/master/services/users) and run
 
 ```bash
+npm install
 serverless run
 ```
 
@@ -50,6 +51,7 @@ Serverless     Function 'users-register' finished
 Next up open another terminal and cd into the directory of the emails service at [services/emails](https://github.com/serverless/event-gateway-example/tree/master/services/emails). There also run
 
 ```bash
+npm install
 serverless run
 ```
 
