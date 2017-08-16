@@ -59,10 +59,6 @@ Tutorial coming soon …
 
 Tutorial coming soon …
 
-## Deploy
-
-Currently work in progress and you can expect this section to be completed soon. Production ready deployment is one of the highest priorities of the Serverless team. Please reach out to us if you are interested to run the Event Gateway on-premise or use a hosted solution.
-
 ## Events
 
 A list of all the events used in this application:
@@ -71,6 +67,10 @@ A list of all the events used in this application:
 - user.registered
 - user.clicked
 - gateway.info.functionError
+
+## Deploy
+
+Currently work in progress and you can expect this section to be completed soon. Production ready deployment is one of the highest priorities of the Serverless team. Please reach out to us if you are interested to run the Event Gateway on-premise or use a hosted solution.
 
 ## Resources
 
