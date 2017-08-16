@@ -2,7 +2,7 @@
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
-This example showcases how to develop and deploy Serverless applications using the Event Gateway as the central hub and broker, orchestrating event flows across decoupled services.
+This example showcases how to develop and deploy Serverless applications using the [Event Gateway](https://github.com/serverless/event-gateway) as the central hub and broker, orchestrating event flows across decoupled services.
 
 1. [General](#general)
 1. [Step by Step Guide](#step-by-step-guide)
