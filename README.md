@@ -20,6 +20,10 @@ The Event Gateway allows you to provide HTTP endpoints as well as Pub/Sub functi
 
 This example contains multiple services. Each of them can be run separately to develop an individual service, but also together at the same time to test the integration between multiple services.
 
+## Install
+
+Clone down the repository and run `npm install` in the root directory
+
 ## Step by Step Guide
 
 ### Getting Started setting up an HTTP endpoint
