@@ -84,7 +84,30 @@ serverless emit -n=user.registered -d='{ "id": 42, "session": "xxxxx", "email": 
 
 ### Error Handling with Event Gateway System Events
 
-Tutorial coming soon …
+The Event Gateway provides the system event `gateway.info.functionError` which is triggered every time a functions fails.
+
+In order to spin up a function that throws an error you can spin up the crm service at [services/crm](https://github.com/serverless/event-gateway-example/tree/master/services/crm) using:
+
+```bash
+serverless run
+```
+
+It registers the function `addUserToCrm` and subscribes it to `user.registered`. After emitting the event the workflow should include:
+
+```bash
+Event Gateway  Event 'user.registered' received
+Serverless     Function 'crm-addUserToCrm' triggered by event 'user.registered'
+Serverless     Function failed due to an error
+Event Gateway  Event 'gateway.info.functionError' received
+```
+
+You can subscribe and act on such system events. The errors service at [services/errors](https://github.com/serverless/event-gateway-example/tree/master/services/errors) subscribes to `gateway.info.functionError`. Once again initialize it with `serverless run` and emit the `user.registered` event to see how the `alertAdmin` is invoked
+
+```bash
+Event Gateway  Event 'gateway.info.functionError' received
+Serverless     Function 'errors-alertAdmin' triggered by event 'gateway.info.functionError'
+Serverless     Function 'errors-alertAdmin' finished:
+```
 
 ### Going Multi-Cloud with Google Cloud Functions
 
