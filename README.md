@@ -22,7 +22,8 @@ This example contains multiple services. Each of them can be run separately to d
 
 ## Install
 
-Make sure to have the Serverless Framework installed via `npm install -g serverless`. Then clone down the repository and run `npm install` in the root directory. This command runs `npm install` in each service and the frontend app.
+1. Make sure to have the Serverless Framework installed via `npm install -g serverless` and you are logged into the Serverless Platform by running `serverless login`.
+2. Clone down the repository and run `npm install` in the root directory. This command runs `npm install` in the frontend app and each backend service.
 
 ## Step by Step Guide
 
