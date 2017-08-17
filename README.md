@@ -22,7 +22,7 @@ This example contains multiple services. Each of them can be run separately to d
 
 ## Install
 
-Clone down the repository and run `npm install` in the root directory
+Make sure to have the Serverless Framework installed via `npm install -g serverless`. Then clone down the repository and run `npm install` in the root directory. This command runs `npm install` in each service and the frontend app.
 
 ## Step by Step Guide
 
@@ -31,7 +31,6 @@ Clone down the repository and run `npm install` in the root directory
 To get started cd into the users service at  [services/users](https://github.com/serverless/event-gateway-example/tree/master/services/users) and run
 
 ```bash
-npm install
 serverless run
 ```
 
@@ -55,7 +54,6 @@ Serverless     Function 'users-register' finished
 Next up open another terminal and cd into the directory of the emails service at [services/emails](https://github.com/serverless/event-gateway-example/tree/master/services/emails). There also run
 
 ```bash
-npm install
 serverless run
 ```
 

@@ -4,7 +4,6 @@
   "description": "[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)",
   "main": "index.js",
   "scripts": {
-    "start": "cd frontend && npm start",
     "postinstall": "node postinstall.js"
   },
   "repository": {
