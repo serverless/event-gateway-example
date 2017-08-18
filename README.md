@@ -10,7 +10,7 @@ This example showcases how to develop and deploy Serverless applications using t
     1. [Subscribing to Custom Events](#subscribing-to-custom-events)
     1. [Error Handling with Event Gateway System Events](#error-handling-with-event-gateway-system-events)
     1. [Going Multi-Cloud with Google Cloud Functions](#going-multi-cloud-with-google-cloud-functions)
-1. [Events](#events)
+1. [Events](#list-of-all-events)
 1. [Deploy](#deploy)
 1. [Resources](#resources)
 
@@ -111,15 +111,103 @@ Serverless     Function 'errors-alertAdmin' finished:
 
 ### Going Multi-Cloud with Google Cloud Functions
 
-Tutorial coming soon …
+The Event Gateway itself is designed in a way to operate across multiple cloud providers. In our application we leverage this opportunity to deploy two service running Google Cloud Functions using Google's Vision API as well as Google's BigQuery.
 
-## Events
+#### Analyzing Images with the Vision API
+
+First you need to get an API and project key from a project that has the Cloud Vision API enabled.
+
+##### Setup the Vision Service
+
+1. Go to the [Cloud Vision API](https://console.cloud.google.com/apis/api/vision.googleapis.com/overview) section of the GCP console. Hit "Enable" to enable Cloud Vision for your project.
+
+2. Go to the [Credentials view](https://console.cloud.google.com/apis/credentials) in the GCP Console. Hit "Create credentials" and choose "API key". Copy and paste the key into [services/vision/config.json](https://github.com/serverless/event-gateway-example/tree/master/services/vision/config.json).
+
+3. Retrieve the project id and set `PROJECT_ID` in the `config.json` file.
+
+##### Usage
+
+Next up open a new terminal and go to [services/vision/](https://github.com/serverless/event-gateway-example/tree/master/services/vision/) and run:
+
+```bash
+serverless run
+```
+
+It registers the function `annotateUser` and subscribes it to `user.registered`. After emitting the event this function will fetch the user's Gravatar based on the email address and analyze it with the Vision API.
+
+Once completed the function will emit the event `user.annotated`. The event can be used by any function subscribing to it from any cloud provider.
+
+#### Sending Data to BigQuery
+
+Our application emits `user.clicked` events directly from the front-end. To test this run the front-end, log in and click one of the buttons. Once up and running the analytics service listens to these events and sends them to BigQuery for further analysis.
+
+##### Setup the Analytics Service
+
+In the next steps you need to retrieve a JSON credentials file with access to BigQuery.
+
+1. Go to the Google APIs [Credentials console](https://console.developers.google.com/projectselector/apis/credentials). Select your project.
+
+1. Go to the [Google APIs Library](https://console.developers.google.com/apis/library) page, and click on the [BiqQuery API](https://console.developers.google.com/apis/api/bigquery-json.googleapis.com/overview) link to make sure the API is enabled for your project.
+
+1. Click `Create Credentials` and choose `Service account key`.
+
+1. In the Service Account dropdown, choose `New service account`. Give it a name. In the Role box, go to BigQuery and select BigQuery Admin.
+
+1. Use a JSON key type and hit 'Create'. It will download a JSON file to your computer. Move it to the directory [services/analytics/](https://github.com/serverless/event-gateway-example/tree/master/services/analytics/) as the file name `credentials.json`.
+
+##### Usage
+
+Next up open a new terminal and go to [services/vision/](https://github.com/serverless/event-gateway-example/tree/master/services/vision/) and run:
+
+```bash
+node setup.js # setup the BigQuery table
+serverless run
+```
+
+Then open another terminal, cd into [frontend/](https://github.com/serverless/event-gateway-example/tree/master/frontend/) and run:
+
+```bash
+npm start
+```
+
+This will open your browser and visit http://localhost:3000. Register with an email and click one of the buttons.
+
+In the terminal running the Event Gateway you will recognize a `user.clicked` event was received. This is the case, because the event was directly emitted from the browser using the [Serverless Development Kit (aka FDK)](https://github.com/serverless/fdk).
+
+##### Using BigQuery
+
+Go to the [BigQuery Console](https://bigquery.cloud.google.com/welcome). Make sure you're in the right project.
+
+Useful queries:
+
+Show the 1000 most recent events with event name, timestamp, email (if it exists in data), and full data object:
+
+```
+SELECT
+  event,
+  receivedAt,
+  JSON_EXTRACT(data, '$.email') AS email,
+  data
+FROM
+  [serverless-emit:emit_demo.test_events]
+ORDER BY receivedAt DESC
+LIMIT
+  1000
+```
+
+Congratulations! You explored the whole example application.
+
+Please reach out to us in the issues or via email in case you have questions or suggestions for improvement.
+
+## List of all Events
 
 A list of all the events used in this application:
 
 - http
 - user.registered
 - user.clicked
+- user.annotated
+- email.sent
 - gateway.info.functionError
 
 ## Deploy
