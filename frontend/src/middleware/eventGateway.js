@@ -1,11 +1,10 @@
-import fdk from '@serverless/fdk';
+import fdk from '@serverless/fdk/dist/fdk.min.js';
 
 const eventGateway = fdk.eventGateway({
   url: 'http://localhost:4000'
 });
 
 export default store => next => action => {
-
   let event = {};
 
   switch (action.type) {
