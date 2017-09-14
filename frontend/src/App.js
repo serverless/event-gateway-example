@@ -30,7 +30,7 @@ class App extends Component {
             <span className="logo-small">
               <img src={logo} alt="logo" height="20" />
             </span>
-            serverless architecture
+            serverless application
           </div>
           <div className="nav-right">
             {this.props.session &&
@@ -44,7 +44,7 @@ class App extends Component {
         </div>
         <div className="content center">
           <div className="hero-icon">ß</div>
-          <div className="title">serverless architecture</div>
+          <div className="title">serverless application</div>
           <div className="tagline center">build more, manage less</div>
           <div className="section">
             {this.props.session
@@ -66,7 +66,7 @@ class App extends Component {
               <h2>build value, fast</h2>
             </div>
             <p>
-              There is no faster way to get new projects built and to the market than to use a serverless architecture.
+              There is no faster way to get new projects built and to the market than to use a serverless application.
             </p>
             <button
               className="flat"
@@ -81,7 +81,7 @@ class App extends Component {
               <h2>minimize overhead</h2>
             </div>
             <p>
-              Serverless architectures are auto-scaling with pay-per-execution
+              Serverless applications are auto-scaling with pay-per-execution
               pricing, reducing overhead like never before
             </p>
             <button
@@ -97,7 +97,7 @@ class App extends Component {
               <h2>event-driven</h2>
             </div>
             <p>
-              The back-end and front-end of this serverless architecture is entirely event-driven.
+              The back-end and front-end of this serverless application is entirely event-driven.
             </p>
             <button
               className="flat"
