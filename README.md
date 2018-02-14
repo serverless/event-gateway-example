@@ -155,9 +155,11 @@ In the next steps you need to retrieve a JSON credentials file with access to Bi
 
 1. Use a JSON key type and hit 'Create'. It will download a JSON file to your computer. Move it to the directory [services/analytics/](https://github.com/serverless/event-gateway-example/tree/master/services/analytics/) as the file name `credentials.json`.
 
+1. Update the project name in the `config.json` file in the [services/analytics/](https://github.com/serverless/event-gateway-example/tree/master/services/analytics/) directory with your project name.
+
 ##### Usage
 
-Next up open a new terminal and go to [services/vision/](https://github.com/serverless/event-gateway-example/tree/master/services/vision/) and run:
+Next up open a new terminal and go to [services/analytics/](https://github.com/serverless/event-gateway-example/tree/master/services/analytics/) and run:
 
 ```bash
 node setup.js # setup the BigQuery table
